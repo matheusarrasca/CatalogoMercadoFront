@@ -1,21 +1,20 @@
-import { useState } from "react";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 function App() {
-
-  const [contador, setContador] = useState(0);
-
   return (
     <div>
-      <Header titulo="Catálogo" />
+      <Header titulo="Catálogo Mercado" />
 
-      <h2>Contador</h2>
+      <h2>Produtos</h2>
 
-      <p>{contador}</p>
+      <ul>
+        <li>Notebook</li>
+        <li>Mouse</li>
+        <li>Teclado</li>
+      </ul>
 
-      <button onClick={() => setContador(contador + 1)}>
-        Incrementar
-      </button>
+      <Footer />
     </div>
   );
 }
