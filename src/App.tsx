@@ -1,5 +1,6 @@
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import Button from "./components/Button/Button";
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
         <li>Mouse</li>
         <li>Teclado</li>
       </ul>
+
+      <Button texto="Cadastrar Produto" />
 
       <Footer />
     </div>
