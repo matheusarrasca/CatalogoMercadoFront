@@ -9,11 +9,6 @@ function App() {
 
       <h2>Produtos</h2>
 
-      <ul>
-        <li>Notebook</li>
-        <li>Mouse</li>
-        <li>Teclado</li>
-      </ul>
 
       <Button texto="Cadastrar Produto" />
 
