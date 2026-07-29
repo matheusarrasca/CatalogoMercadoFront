@@ -7,7 +7,7 @@ type MainLayoutProps = {
 function MainLayout({ children }: MainLayoutProps) {
   return (
     <>
-      <Menu />
+      <Menu />...
       <main>
         {children}
       </main>
