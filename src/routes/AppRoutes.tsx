@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import MainLayout from "../Layouts/MainLayout";
+
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Produtos from "../pages/Produtos/Produtos";
@@ -10,11 +12,19 @@ function AppRoutes(){
     return (
         <BrowserRouter>
         <Routes>
-            <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/produtos" element={<Produtos />} />
-            <Route path="/categorias" element={<Categorias />} />
-            <Route path="/dashboard" element={<DashBoard />} />
+
+            <Route element={<MainLayout />}>
+
+          <Route path="/" element={<Home />} />
+
+          <Route path="/produtos" element={<Produtos />} />
+
+          <Route path="/categorias" element={<Categorias />} />
+
+          <Route path="/dashboard" element={<DashBoard />} />
+          
+            </Route>
         </Routes>
         </BrowserRouter>
     )

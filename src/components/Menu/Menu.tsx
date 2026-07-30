@@ -19,7 +19,6 @@ function Menu(){
 
       {" | "}
 
-      <Link to="/login">Login</Link>
         </nav>
     );
 }

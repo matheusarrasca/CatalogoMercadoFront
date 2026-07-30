@@ -1,18 +1,14 @@
+import { Outlet } from "react-router-dom";
 import Menu from "../components/Menu/Menu";
 
-type MainLayoutProps = {
-  children: React.ReactNode;
-};
-
-function MainLayout({ children }: MainLayoutProps) {
-  return (
-    <>
-      <Menu />...
-      <main>
-        {children}
-      </main>
-    </>
-  );
+function MainLayout(){
+    return (
+        <>
+        <Menu />
+        
+        <Outlet />
+        </>
+    );
 }
 
 export default MainLayout;
