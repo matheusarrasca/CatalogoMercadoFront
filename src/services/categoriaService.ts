@@ -19,3 +19,7 @@ export async function getCategorias(
 
     return response.data;
 }
+
+export async function excluirCategoria(id: number):Promise<void> {
+    await api.delete(`/Categoria/${id}`);
+}

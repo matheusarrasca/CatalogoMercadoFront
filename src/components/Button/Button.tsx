@@ -1,11 +1,13 @@
+import type{ ReactNode } from "react";
+
 type ButtonProps = {
-  texto: string;
+  children: ReactNode;
 };
 
-function Button({ texto }: ButtonProps) {
+function Button({ children }: ButtonProps) {
   return (
     <button>
-      {texto}
+      {children}
     </button>
   );
 }
