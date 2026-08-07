@@ -23,3 +23,12 @@ export async function getCategorias(
 export async function excluirCategoria(id: number):Promise<void> {
     await api.delete(`/Categoria/${id}`);
 }
+
+export async function criarCategoria(categoria:Categoria):Promise<Categoria> {
+
+    const response = await api.post<Categoria>(
+        "/Categoria",
+        categoria
+    );
+    return response.data;
+}

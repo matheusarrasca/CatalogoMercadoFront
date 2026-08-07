@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {
   getCategorias,
   excluirCategoria,
+  criarCategoria,
 } from "../../services/categoriaService";
 
 import type { Categoria } from "../../types/Categoria";
@@ -10,7 +11,12 @@ function Categorias() {
   const [categorias, setCategorias] = useState<Categoria[]>([]);
   const [carregando, setCarregando] = useState(true);
 
+  const [nome, setNome] = useState("");
+  const [imagemUrl, setImagemUrl] = useState("");
+
   async function carregarCategorias() {
+    setCarregando(true);
+
     try {
       const response = await getCategorias();
 
@@ -24,7 +30,7 @@ function Categorias() {
 
   async function handleExcluir(id: number) {
     const confirmar = window.confirm(
-      "Deseja realmente excluir esta categoria?",
+      "Deseja realmente excluir esta categoria?"
     );
 
     if (!confirmar) return;
@@ -40,6 +46,32 @@ function Categorias() {
     }
   }
 
+  async function handleSalvar() {
+    if (!nome.trim() || !imagemUrl.trim()) {
+      alert("Preencha todos os campos.");
+      return;
+    }
+
+    try {
+      await criarCategoria({
+        id: 0,
+        nome,
+        imagemUrl,
+      });
+
+      setNome("");
+      setImagemUrl("");
+
+      await carregarCategorias();
+
+      alert("Categoria cadastrada com sucesso!");
+    } catch (error) {
+      console.error(error);
+
+      alert("Erro ao cadastrar categoria.");
+    }
+  }
+
   useEffect(() => {
     carregarCategorias();
   }, []);
@@ -52,6 +84,32 @@ function Categorias() {
     <div>
       <h1>Categorias</h1>
 
+      <div style={{ marginBottom: "20px" }}>
+        <h2>Nova Categoria</h2>
+
+        <input
+          type="text"
+          placeholder="Nome"
+          value={nome}
+          onChange={(e) => setNome(e.target.value)}
+        />
+
+        <br />
+        <br />
+
+        <input
+          type="text"
+          placeholder="Imagem URL"
+          value={imagemUrl}
+          onChange={(e) => setImagemUrl(e.target.value)}
+        />
+
+        <br />
+        <br />
+
+        <button onClick={handleSalvar}>Salvar</button>
+      </div>
+
       {categorias.length === 0 ? (
         <p>Nenhuma categoria encontrada.</p>
       ) : (
@@ -59,9 +117,7 @@ function Categorias() {
           <thead>
             <tr>
               <th>Nome</th>
-
               <th>Imagem</th>
-
               <th>Ações</th>
             </tr>
           </thead>
@@ -89,4 +145,3 @@ function Categorias() {
 }
 
 export default Categorias;
-.................
