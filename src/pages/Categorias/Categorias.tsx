@@ -5,6 +5,7 @@ import {
   criarCategoria,
 } from "../../services/categoriaService";
 
+import "./Categorias.css";
 import type { Categoria } from "../../types/Categoria";
 
 function Categorias() {
@@ -13,6 +14,8 @@ function Categorias() {
 
   const [nome, setNome] = useState("");
   const [imagemUrl, setImagemUrl] = useState("");
+
+  const [mostrarFormulario, setMostrarFormulario] = useState(false);
 
   async function carregarCategorias() {
     setCarregando(true);
@@ -61,6 +64,7 @@ function Categorias() {
 
       setNome("");
       setImagemUrl("");
+      setMostrarFormulario(false);
 
       await carregarCategorias();
 
@@ -81,39 +85,52 @@ function Categorias() {
   }
 
   return (
-    <div>
-      <h1>Categorias</h1>
+    <div className="categorias-container">
 
-      <div style={{ marginBottom: "20px" }}>
-        <h2>Nova Categoria</h2>
+      <div className="categorias-header">
+        <h1>Categorias</h1>
 
-        <input
-          type="text"
-          placeholder="Nome"
-          value={nome}
-          onChange={(e) => setNome(e.target.value)}
-        />
-
-        <br />
-        <br />
-
-        <input
-          type="text"
-          placeholder="Imagem URL"
-          value={imagemUrl}
-          onChange={(e) => setImagemUrl(e.target.value)}
-        />
-
-        <br />
-        <br />
-
-        <button onClick={handleSalvar}>Salvar</button>
+        <button
+          className="btn-nova"
+          onClick={() => setMostrarFormulario(!mostrarFormulario)}
+        >
+          {mostrarFormulario ? "Cancelar" : "+ Nova Categoria"}
+        </button>
       </div>
+
+      {mostrarFormulario && (
+        <div className="form-categoria">
+
+          <h2>Nova Categoria</h2>
+
+          <input
+            type="text"
+            placeholder="Nome"
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+          />
+
+          <input
+            type="text"
+            placeholder="Imagem URL"
+            value={imagemUrl}
+            onChange={(e) => setImagemUrl(e.target.value)}
+          />
+
+          <button
+            className="btn-salvar"
+            onClick={handleSalvar}
+          >
+            Salvar
+          </button>
+
+        </div>
+      )}
 
       {categorias.length === 0 ? (
         <p>Nenhuma categoria encontrada.</p>
       ) : (
-        <table border={1} cellPadding={8}>
+        <table>
           <thead>
             <tr>
               <th>Nome</th>
@@ -130,8 +147,14 @@ function Categorias() {
                 <td>{categoria.imagemUrl}</td>
 
                 <td>
-                  <button>Editar</button>{" "}
-                  <button onClick={() => handleExcluir(categoria.id)}>
+                  <button className="btn-editar">
+                    Editar
+                  </button>
+
+                  <button
+                    className="btn-excluir"
+                    onClick={() => handleExcluir(categoria.id)}
+                  >
                     Excluir
                   </button>
                 </td>
@@ -140,12 +163,9 @@ function Categorias() {
           </tbody>
         </table>
       )}
+
     </div>
   );
 }
 
 export default Categorias;
-export default Categorias;
-
-export default Categorias;
-

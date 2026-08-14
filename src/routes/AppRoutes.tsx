@@ -1,37 +1,37 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import Layout from "../Layouts/Layout";
+
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Produtos from "../pages/Produtos/Produtos";
 import Categorias from "../pages/Categorias/Categorias";
 import DashBoard from "../pages/DashBoard/DashBoard";
 
-import ProtectedRoute from "./ProtectedRoute";
-import MainLayout from "../Layouts/MainLayout";
+function AppRoutes() {
+  return (
+    <BrowserRouter>
+      <Routes>
 
-function AppRoutes(){
-    return (
-        <BrowserRouter>
-        <Routes>
+        {/* Página sem layout */}
+        <Route path="/login" element={<Login />} />
 
-            <Route path="/login" element={<Login />} />
-
-            <Route element={<ProtectedRoute />}>
-            <Route element={<MainLayout />}>
+        {/* Páginas com layout */}
+        <Route element={<Layout />}>
 
           <Route path="/" element={<Home />} />
+
+          <Route path="/dashboard" element={<DashBoard />} />
 
           <Route path="/produtos" element={<Produtos />} />
 
           <Route path="/categorias" element={<Categorias />} />
 
-          <Route path="/dashboard" element={<DashBoard />} />
+        </Route>
 
-            </Route>
-            </Route>
-        </Routes>
-        </BrowserRouter>
-    )
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default AppRoutes;

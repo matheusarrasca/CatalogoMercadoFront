@@ -1,0 +1,31 @@
+.topo{
+    background:#343a40;
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 40px;
+}
+
+.topo h2{
+    margin:0;
+}
+
+.topo nav{
+    display:flex;
+    gap:20px;
+}
+
+.topo nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.topo nav a:hover{
+    color:#ffc107;
+}
+
+.conteudo{
+    padding:40px;
+}
