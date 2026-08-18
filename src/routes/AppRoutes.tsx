@@ -29,8 +29,8 @@ function AppRoutes() {
 
         </Route>
 
-      {/* </Routes>
-    </BrowserRouter> */}
+      </Routes>
+    </BrowserRouter>
   );
 }
 
