@@ -27,9 +27,9 @@ function AppRoutes() {
 
           <Route path="/categorias" element={<Categorias />} />
 
-        </Route> git up
+        </Route>
 
-      </Routes>xxxx
+      </Routes>
     </BrowserRouter>
   );
 }
